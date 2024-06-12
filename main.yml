@@ -1,0 +1,21 @@
+
+--- # Deploy devops node
+- hosts: monitoring
+  remote_user: root
+#  become: yes
+#  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  pre_tasks:
+  - name: Install tar
+    ansible.builtin.package:
+      name: tar
+      state: present
+  - name: Install unzip
+    ansible.builtin.package:
+      name: unzip
+      state: present
+  roles:
+    - ../../Ansible-Roles/ansible-prometheus/
+    
+
